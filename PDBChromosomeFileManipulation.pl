@@ -46,6 +46,19 @@ open(IN, $ARGV[1]) or "File does not exists.\n";
 my $counter = 0;
 my %coordinates;
 my %amino;
+my $proteinSequence = "";
+
+my %amino=();
+$amino{"ALA"} = 'A'; $amino{"CYS"} = 'C'; $amino{"ASP"} =
+'D'; $amino{"GLU"} = 'E';
+$amino{"PHE"} = 'F'; $amino{"GLY"} = 'G'; $amino{"HIS"} =
+'H'; $amino{"ILE"} = 'I';
+$amino{"LYS"} = 'K'; $amino{"LEU"} = 'L'; $amino{"MET"} =
+'M'; $amino{"ASN"} = 'N';
+$amino{"PRO"} = 'P'; $amino{"GLN"} = 'Q'; $amino{"ARG"} =
+'R'; $amino{"SER"} = 'S';
+$amino{"THR"} = 'T'; $amino{"VAL"} = 'V'; $amino{"TRP"} =
+'W'; $amino{"TYR"} = 'Y';
 
 while(<IN>)
 {
@@ -56,7 +69,8 @@ while(<IN>)
 		if ($items[2] eq "CA")
 		{
 			$counter++;
-
+			
+			$proteinSequence .= $amino{$items[3]}; 
 			my $residueSequenceNumber = $items[4];
 			#part 3
 			
@@ -85,6 +99,7 @@ print("The amount of residues in the .pdb file is $counter.\n");
 
 #part 2
 
+print $proteinSequence."\n";
 
 
 #part 4
